@@ -1,0 +1,7 @@
+.stat {
+    width: 100%;
+    border-top: 1px solid blue;
+    height: 5rem;
+    border-bottom: 1px solid blue;
+    padding-bottom: 3rem;
+}

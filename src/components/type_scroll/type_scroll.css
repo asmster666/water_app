@@ -1,0 +1,54 @@
+.type_scroll {
+    width: 14%;
+    height: 28rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slider {
+    width: 90%;
+    margin: 0 auto;
+    height: 12rem;
+    border: 1px solid rgb(100, 223, 251, 0.5);
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgb(100, 223, 251);
+    font-size: 1.5rem;
+    scrollbar-color: dark;
+}
+
+
+/* --------------Responsive design-------------- */
+
+/* Mobile version (<600px) */
+@media only screen and (max-width: 599px) {
+    .type_scroll {
+        height: 18rem;
+    }
+}
+
+/* Tablet version (portrait) >600px */
+@media only screen and (min-width: 600px) {
+    .type_scroll {
+        height: 22rem;
+    }
+}
+
+/* Tablet version (landscape) >900px */
+@media only screen and (min-width: 900px) {
+    .type_scroll {
+        height: 24rem;
+    }
+}
+
+/* Desktop version (>1200px) */
+@media only screen and (min-width: 1200px) {
+    .type_scroll {
+        height: 28rem;
+    }
+}

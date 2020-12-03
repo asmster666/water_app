@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Noto+Sans+JP&display=swap');
+
+/* first page */
+
+.form {
+    width: 40%;
+    margin: 8rem auto;
+    border: 10px solid blue;
+    display: flex;
+}
+.form1 {
+    flex-direction: column;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    color: rgb(26, 138, 243);
+}
+.title {
+    font-size: 3rem;
+}
+#glass {
+    background-image: url('../../img/flat-design-water-glass-icon-cartoon-style-isolated-white-background-soda-glass-vector-illustration-liquid-water-business-157410619.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.glass {
+    width: 30%;
+    height: 10rem;
+    align-items: center;
+} 
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+}
+#design {
+    display: flex;
+    align-items: flex-end;
+    color: rgb(26, 138, 243);
+    font-family: 'Dancing Script', cursive;
+}
+#but {
+    background-color: rgb(26, 138, 243);
+    border-color: rgb(26, 138, 243);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 3rem;
+}
+.start {
+    width: 20%;
+}
+
+/* second page */
+.form2 {
+    justify-content: space-between;
+}
+.wrapper2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 60%;
+    margin: 1rem;
+}
+#field {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 1rem;
+}
+#ques {
+    margin-bottom: 1rem;
+}
+#btn {
+    display: flex;
+    align-items: flex-end;
+}
+.radio_btns {
+    display: flex;
+}
+.next, .submit {
+    width: 5rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+} 
+.next {
+    display: none;
+}
+
+/* main page */
+.appl {
+    display: flex;
+    width: 70%;
+    margin: 2rem auto;
+    flex-flow: row wrap;
+    border: 5px solid blue;
+}
+
+/*-----------responsive-----------*/
+
+/* Mobile version (<600px) */
+@media only screen and (max-width: 599px) {
+    .form1, .form2 {
+        width: 80%;
+    }
+    .appl {
+        width: 90%;
+    }
+}
+
+/* Tablet version (portrait) >600px */
+@media only screen and (min-width: 600px) {
+    .form1, .form2 {
+        width: 70%;
+    }
+}
+
+/* Tablet version (landscape) >900px */
+@media only screen and (min-width: 900px) {
+    .form1, .form2 {
+        width: 50%;
+    }
+}
+
+/* Desktop version (>1200px) */
+@media only screen and (min-width: 1200px) {
+    .form1, .form2 {
+        width: 40%;
+    }
+}

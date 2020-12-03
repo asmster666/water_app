@@ -1,0 +1,85 @@
+.main {
+    width: 70%;
+    height: 28rem;
+    border-right: 1px solid blue;
+}
+#glass {
+    background-image: url('../../img/flat-design-water-glass-icon-cartoon-style-isolated-white-background-soda-glass-vector-illustration-liquid-water-business-157410619.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.glass {
+    width: 40%;
+    margin: 3rem auto;
+    height: 15rem;
+}
+#measure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#counter {
+    font-size: 2rem; 
+    margin-bottom: 1rem;
+}
+#line {
+    height: 1rem;
+    background-color: rgb(0, 225, 255);
+    width: 70%;
+}
+
+/* --------------Responsive design-------------- */
+
+/* Mobile version (<600px) */
+@media only screen and (max-width: 599px) {
+    .main {
+        height: 18rem;
+    }
+    .glass {
+        width: 40%;
+        margin: 1rem auto;
+        height: 10rem;
+    }
+    #counter {
+        font-size: 1.5rem;
+    }
+}
+
+/* Tablet version (portrait) >600px */
+@media only screen and (min-width: 600px) {
+    .main {
+        height: 22rem;
+    }
+    .glass {
+        height: 12rem;
+        margin: 2rem auto;
+    }
+    #counter {
+        font-size: 1.5rem;
+    }
+}
+
+/* Tablet version (landscape) >900px */
+@media only screen and (min-width: 900px) {
+    .main {
+        height: 24rem;
+    }
+    .glass {
+        height: 14rem;
+        margin: 2rem auto;
+    }
+    #counter {
+        font-size: 2rem;
+    }
+}
+
+/* Desktop version (>1200px) */
+@media only screen and (min-width: 1200px) {
+    .main {
+        height: 28rem;
+    }
+    .glass {
+        height: 15rem;
+        margin: 3rem auto;
+    }
+}

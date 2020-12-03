@@ -1,0 +1,65 @@
+.ml_scroll {
+    width: 14%;
+    height: 28rem;
+    border-right: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.slide {
+    width: 90%;
+    margin: 0 auto;
+    height: 3rem;
+    display: none;
+}
+.active {
+    text-align: center;
+    font-size: 1.5rem;
+    display: block;
+}
+#up, #down {
+    background-color: rgb(100, 223, 251, 0.6);
+    border-color: rgb(100, 223, 251, 0.1);
+    width: 40%;
+    margin: 2rem auto;
+}
+
+/* --------------Responsive design-------------- */
+
+/* Mobile version (<600px) */
+@media only screen and (max-width: 599px) {
+    .ml_scroll {
+        height: 18rem;
+        overflow: hidden;
+    }
+}
+
+/* Tablet version (portrait) >600px */
+@media only screen and (min-width: 600px) {
+    .ml_scroll {
+        height: 22rem;
+        overflow: hidden;
+    }
+}
+
+/* Tablet version (landscape) >900px */
+@media only screen and (min-width: 900px) {
+    .ml_scroll {
+        height: 24rem;
+    }
+}
+
+/* Desktop version (>1200px) */
+@media only screen and (min-width: 1200px) {
+    .ml_scroll {
+        height: 28rem;
+    }
+}
