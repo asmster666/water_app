@@ -8,18 +8,23 @@
 .slider {
     width: 90%;
     margin: 0 auto;
-    height: 12rem;
-    border: 1px solid rgb(100, 223, 251, 0.5);
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: 18rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: rgb(100, 223, 251);
     font-size: 1.5rem;
-    scrollbar-color: dark;
+}
+.slides {
+    visibility: visible;
+}
+.active_type {
+    padding: 0.5rem 0 0.8rem 0;
+    border: 1px solid rgb(81, 133, 236);
+    text-align: center;
+    color: rgb(81, 133, 236);
+    visibility: visible;
 }
 
 

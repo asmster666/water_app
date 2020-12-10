@@ -1,29 +1,28 @@
-import React, {Component, createElement} from 'react';
+import React, {Component} from 'react';
 import './type_scroll.css';
-import '../../type_db.json';
 
-// const data = "../../type_db.json";
 
 export default class Typescroll extends Component {
-    constructor(props) {
-        super(props);
-
-        this.showListOfDrinks = this.showListOfDrinks.bind(this);
-    }
 
     state = {
-        arr: ['water', 'juice', 'milk', 'coffee', 'tea', 'kefir', 'yoghurt', 'alcohol']
+        array: ['water', 'juice', 'milk', 'coffee', 'tea', 'kefir', 'yoghurt', 'alcohol']
     }
 
-    showListOfDrinks() {
+    componentDidMount() {
+        this.buildSlider();
+    }
+
+    buildSlider = () => {
         const slider = document.querySelector(".slider");
-        for(let i = 0; i < this.state.arr.length; i++) {
-            let field = document.createElement("div");
-            let text = document.createTextNode(`${this.state.arr[i]}`);
-            field.appendChild(text);
-            slider.appendChild(field);
-            if(this.state.arr[i] === "water") {
-                field.styled = `display: block`;
+        for(let i = 0; i < this.state.array.length; i++) {
+            let child = document.createElement("div");
+            let text = document.createTextNode(`${this.state.array[i]}`);
+            child.append(text);
+            child.classList.add("slides");
+            slider.appendChild(child);
+            // get the middle elem the active class
+            if(i === 3) {
+                child.classList.add("active_type");
             }
         }
     }
@@ -31,8 +30,9 @@ export default class Typescroll extends Component {
     render() {
         return (
             <div className="type_scroll">
-                <div className="slider" onClick={this.showListOfDrinks}></div>
+                <div className="slider"></div>
             </div>
         )
     }
 }
+

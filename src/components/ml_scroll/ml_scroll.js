@@ -1,14 +1,9 @@
 import React, {Component} from "react";
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
 import './ml_scroll.css';
+
 
 class Mlscroll extends Component {
     
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    }
-
     constructor(props) {
         super(props);
 
@@ -17,7 +12,8 @@ class Mlscroll extends Component {
 
         this.state = {
             arr: [],
-            daily: null
+            daily: 0,
+            gotDaily: false
         }
     }
 
@@ -42,7 +38,7 @@ class Mlscroll extends Component {
         }
     } 
 
-     prevSlide() {
+    prevSlide() {
         for(let i = this.state.arr.length - 1; i > 0; i--) {
             if(this.state.arr[i].classList.contains("active")) {
                 this.state.arr[i].classList.remove("active");
@@ -54,7 +50,7 @@ class Mlscroll extends Component {
             }
         }
     }
-
+ 
     generateSlides = () => {
         const wrapper = document.querySelector(".wrapper");
         for(let i = 40; i < 600; i = i + 10) {
@@ -76,18 +72,15 @@ class Mlscroll extends Component {
     }
 
     getDaily = () => {
-        const { cookies } = this.props;
-        
         const wrap= document.querySelector(".wrapper").children;
         for (let elem of wrap) {
             if(elem.classList.contains("active")){
                 this.setState(() => ({
-                    daily: elem.textContent
-                }))
+                    daily: elem.textContent,
+                    gotDaily: false
+                })) 
             }
         }
-
-        cookies.set('daily', this.state.daily, { path: '/' });
     }
 
     render() {
@@ -95,7 +88,7 @@ class Mlscroll extends Component {
         return (
             <div className="ml_scroll">
                 <button id="up" onClick={this.nextSlide}>△</button>
-                <div className="wrapper" onClick={this.getDaily}></div>
+                <div className="wrapper"></div>
                 <button id="down" onClick={this.prevSlide}>▽</button>
             </div>
 
@@ -103,4 +96,4 @@ class Mlscroll extends Component {
     }
 }
  
-export default withCookies(Mlscroll);
+export default Mlscroll;
