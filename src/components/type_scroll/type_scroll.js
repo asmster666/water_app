@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import './type_scroll.css';
 
 
-export default class Typescroll extends Component {
+class Typescroll extends Component {
 
     state = {
-        array: ['water', 'juice', 'milk', 'coffee', 'tea', 'kefir', 'yoghurt', 'alcohol']
+        array: ['water', 'juice', 'milk/kefir', 'coffee', 'tea', 'yoghurt', 'alcohol'],
+        cur_type: this.props.cur_type
     }
 
     componentDidMount() {
@@ -27,12 +29,37 @@ export default class Typescroll extends Component {
         }
     }
 
+    nextSlide = (e) => {
+        if(e.keyCode === 38) {
+            alert("slide up");
+        }
+    }
+
+    prevSlide = (e) => {
+        if(e.keyCode === 40) {
+            alert("slide down");
+        }
+    }
+
+    actions = (e) => {
+        document.querySelector(".type_scroll").style = "background-color: red";
+        this.prevSlide(e);
+        this.nextSlide(e);
+    }
+
     render() {
         return (
-            <div className="type_scroll">
-                <div className="slider"></div>
+            <div className="type_scroll" onLoad={this.actions}>
+                <div className="slider"></div> 
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        cur_type: state.cur_type
+    }
+}
+
+export default connect(mapStateToProps, null)(Typescroll);

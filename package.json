@@ -1,6 +1,6 @@
 {
-  "homepage": "http://asmster666.github.io/waterapp",
-  "name": "waterapp",
+  "homepage": "http://asmster666.github.io/water_app",
+  "name": "water_app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,8 +12,10 @@
     "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-google-charts": "^3.0.15",
+    "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "redux": "^4.0.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -1,4 +1,4 @@
-water_app (react)
+water_app (react + redux)
 
 forms with cookies,
 navigation (using history api),

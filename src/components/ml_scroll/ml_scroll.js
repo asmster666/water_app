@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {connect} from 'react-redux';
+import {cur_amount} from '../../actions';
 import './ml_scroll.css';
 
 
@@ -12,7 +14,7 @@ class Mlscroll extends Component {
 
         this.state = {
             arr: [],
-            daily: 0,
+            cur_amount: this.props.cur_amount,
             gotDaily: false
         }
     }
@@ -76,9 +78,9 @@ class Mlscroll extends Component {
         for (let elem of wrap) {
             if(elem.classList.contains("active")){
                 this.setState(() => ({
-                    daily: elem.textContent,
-                    gotDaily: false
-                })) 
+                    cur_amount: elem.textContent,
+                    gotDaily: true
+                }));
             }
         }
     }
@@ -88,12 +90,22 @@ class Mlscroll extends Component {
         return (
             <div className="ml_scroll">
                 <button id="up" onClick={this.nextSlide}>△</button>
-                <div className="wrapper"></div>
+                <div className="wrapper" onClick={this.getDaily}></div>
                 <button id="down" onClick={this.prevSlide}>▽</button>
             </div>
 
         )
     }
-}
+};
+
+const mapStateToProps = (state) => {
+    return {
+        cur_amount: state.cur_amount
+    }
+};
+
+const mapDispatchToProps = {
+    cur_amount
+};
  
-export default Mlscroll;
+export default connect(mapStateToProps, mapDispatchToProps)(Mlscroll);

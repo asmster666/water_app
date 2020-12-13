@@ -32,7 +32,7 @@ class WeightNamePage extends Component {
 
     getSex = () => {
         const radio1 = document.getElementById("male");
-        const male = document.getElementById("male").value;
+        const male = radio1.value;
         const radio2 = document.getElementById("female");
         const female = radio2.value;
 
@@ -76,9 +76,33 @@ class WeightNamePage extends Component {
         cookies.set('weight', weight, { path: '/' });
         cookies.set('activity', activity, { path: '/' });
         
-        this.setState(() => ({
-            isSubmitted: true
-        }))
+        switch (name || sex || weight || activity === null) {
+            case (name === null):
+                document.getElementById("name").style = "background-color: red";
+                console.log("name undefined");
+                break;
+            case (sex === null):
+                document.getElementById("male").style = "background-color: red";
+                document.getElementById("female").style = "background-color: red";
+                console.log("sex undefined");
+                break;
+            case (weight === null):
+                document.getElementById("weight").style = "background-color: red";
+                console.log("weight undefined");
+                break;
+            case (activity === null):
+                document.getElementById("activity").style = "background-color: red";
+                console.log("activity undefined");
+                break;
+            case (name && sex && weight && activity):
+                alert("NAH! YOU WONT GO ANY LONGER!!!");
+                break;
+            default: 
+                this.setState(() => ({
+                    isSubmitted: true
+                }));
+                break;
+        };
 
         const next = document.querySelector(".next");
         next.style = "display: block";

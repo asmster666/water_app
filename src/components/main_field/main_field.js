@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 import './main_field.css';
 
@@ -11,14 +13,10 @@ class Main extends Component {
     }
 
     state = {
+        cur_amount: this.props.cur_amount,
+        cur_type: this.props.cur_type,
+        daily_amount: this.props.daily_amount,
         gotDaily: false
-    }
-
-    componentDidMount() {
-    }
-    // get daily when click happened and num's changed
-    componentWillUpdate() {
-        this.getDailyAmount();
     }
     
     getAmount() {
@@ -42,24 +40,22 @@ class Main extends Component {
                 result += activity * (34/3); 
             }
 
-            return Math.round(result, 2);
+            return Math.round(result, 2); 
         }
     }
 
-    getDailyAmount = () => {
-        const { cookies } = this.props;
-
-        let daily = parseInt(cookies.get('daily'));
-
-        return daily;
-    }
+    // getDailyAmount = () => {
+    //     return this.props.daily_amount;
+    // }
 
     render() {
+        const {daily_amount} = this.props;
+        
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter">{this.getDailyAmount()}/{this.getAmount()} ml</div>
+                <div id="counter">{daily_amount}/{this.getAmount()} ml</div>
                     <div id="line"></div>
                 </div>
             </div>
@@ -67,4 +63,10 @@ class Main extends Component {
     }
 }
 
-export default withCookies(Main);
+const mapStateToProps = (state) => {
+    return {
+        daily_amount: state.daily_amount
+    }
+}
+
+export default connect(mapStateToProps, actions)(withCookies(Main));
