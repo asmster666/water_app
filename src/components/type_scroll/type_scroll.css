@@ -2,19 +2,20 @@
     width: 14%;
     height: 28rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .slider {
-    width: 90%;
-    margin: 0 auto;
-    height: 18rem;
+    width: 95%;
+    margin: 0 0 0 0.6rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: rgb(100, 223, 251);
     font-size: 1.5rem;
+    position: relative;
 }
 .slides {
     visibility: hidden;

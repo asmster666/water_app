@@ -1,7 +1,7 @@
 const initialState = {
     cur_amount: 0,
-    cur_type: "",
-    daily_amount: 10
+    type: "",
+    daily_amount: 0
 } 
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
         case 'TYPE' :    
             return {
                 ...state,
-                cur_type: state.cur_type
+                type: state.type
             };
         case 'DAILY_AMOUNT' :
             return {

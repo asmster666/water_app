@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { withRouter } from "react-router-dom";
 import { Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import { instanceOf} from 'prop-types';
 
 import './pages.css';
 
@@ -16,7 +16,7 @@ class WeightNamePage extends Component {
         sex: "",
         weight: "",
         activity: "",
-        isSubmitted: false
+        isSubmitted: true
     }
 
     nextPage = () => {
@@ -50,15 +50,21 @@ class WeightNamePage extends Component {
 
     getWeightValue = () => {
         let weight_var = document.getElementById("weight").value;
-        this.setState(() => ({
-            weight: weight_var
-        }))
-        return weight_var;
-        // if(e.which > 48 && e.which < 58) {
-        //     console.log(weight);
-        // } else {
-        //     continue;
-        // }
+        if(isNaN(weight_var % 1)) {
+            document.getElementById("weight").style = "background-color: red";
+            this.sliceString(weight_var);
+        } else {
+            this.setState(() => ({
+                weight: weight_var
+            }));
+        }
+    }
+
+    sliceString = (str) => {
+        let lastSymb = str.charAt(str.length - 1);
+        str.slice(lastSymb, 0);
+        
+        return lastSymb;
     }
 
     getActivity = () => {
@@ -74,35 +80,7 @@ class WeightNamePage extends Component {
         cookies.set('name', name, { path: '/' });
         cookies.set('sex', sex, { path: '/' });
         cookies.set('weight', weight, { path: '/' });
-        cookies.set('activity', activity, { path: '/' });
-        
-        switch (name || sex || weight || activity === null) {
-            case (name === null):
-                document.getElementById("name").style = "background-color: red";
-                console.log("name undefined");
-                break;
-            case (sex === null):
-                document.getElementById("male").style = "background-color: red";
-                document.getElementById("female").style = "background-color: red";
-                console.log("sex undefined");
-                break;
-            case (weight === null):
-                document.getElementById("weight").style = "background-color: red";
-                console.log("weight undefined");
-                break;
-            case (activity === null):
-                document.getElementById("activity").style = "background-color: red";
-                console.log("activity undefined");
-                break;
-            case (name && sex && weight && activity):
-                alert("NAH! YOU WONT GO ANY LONGER!!!");
-                break;
-            default: 
-                this.setState(() => ({
-                    isSubmitted: true
-                }));
-                break;
-        };
+        cookies.set('activity', activity, { path: '/' }); 
 
         const next = document.querySelector(".next");
         next.style = "display: block";
@@ -147,7 +125,7 @@ class WeightNamePage extends Component {
                     </div>
                 </div>
                 <div id="btn">
-                    <button id="but" className="submit" onClick={()  => this.getCookie(name, sex, weight, activity)} >submit</button>
+                    <button id="but" className="submit" onClick={()  => this.getCookie(name, sex, weight, activity)}>submit</button>
                     <button id="but" className="next" onClick={this.goToNextPage}>next</button>
                 </div>
             </div>

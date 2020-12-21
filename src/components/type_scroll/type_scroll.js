@@ -49,9 +49,11 @@ class Typescroll extends Component {
 
     render() {
         return (
-            <div className="type_scroll" onLoad={this.actions}>
-                <div className="slider"></div> 
-            </div>
+            <div className="type_scroll">
+                <div className="wrap" onLoad={this.actions}>
+                    <div className="slider"></div> 
+                </div>
+            </div> 
         )
     }
 }

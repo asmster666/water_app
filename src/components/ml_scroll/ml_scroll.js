@@ -5,29 +5,32 @@ import './ml_scroll.css';
 
 
 class Mlscroll extends Component {
-    
+
     constructor(props) {
         super(props);
 
         this.nextSlide = this.nextSlide.bind(this);
         this.prevSlide = this.prevSlide.bind(this);
+    }
 
-        this.state = {
-            arr: [],
-            cur_amount: this.props.cur_amount,
-            gotDaily: false
-        }
+    state = {
+        arr: [],
+        cur_amount: 0 
     }
 
     componentDidMount() {
         this.generateSlides();
         const wrap = document.querySelector(".wrapper").children;
+        let newArray = [];
         for (let elem of wrap) {
-            this.state.arr.push(elem); // it's wrong but i didnt find any other way
+            newArray.push(elem);
+            this.setState(() => ({
+                arr: newArray
+            }));
         }
     }
 
-    nextSlide() {  
+    nextSlide = () => {
         for(let i = 0; i < this.state.arr.length; i++) {
             if(this.state.arr[i].classList.contains("active")) {
                 this.state.arr[i].classList.remove("active");
@@ -40,7 +43,7 @@ class Mlscroll extends Component {
         }
     } 
 
-    prevSlide() {
+    prevSlide = () => {
         for(let i = this.state.arr.length - 1; i > 0; i--) {
             if(this.state.arr[i].classList.contains("active")) {
                 this.state.arr[i].classList.remove("active");
@@ -78,20 +81,18 @@ class Mlscroll extends Component {
         for (let elem of wrap) {
             if(elem.classList.contains("active")){
                 this.setState(() => ({
-                    cur_amount: elem.textContent,
-                    gotDaily: true
+                    cur_amount: elem.textContent
                 }));
             }
         }
     }
 
     render() {
-
         return (
             <div className="ml_scroll">
-                <button id="up" onClick={this.nextSlide}>△</button>
+                <button id="up" className="but" onClick={this.nextSlide}>△</button>
                 <div className="wrapper" onClick={this.getDaily}></div>
-                <button id="down" onClick={this.prevSlide}>▽</button>
+                <button id="down" className="but" onClick={this.prevSlide}>▽</button>
             </div>
 
         )
@@ -106,6 +107,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     cur_amount
-};
+}
  
 export default connect(mapStateToProps, mapDispatchToProps)(Mlscroll);

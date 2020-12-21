@@ -15,11 +15,15 @@ class Main extends Component {
     state = {
         cur_amount: this.props.cur_amount,
         cur_type: this.props.cur_type,
-        daily_amount: this.props.daily_amount,
+        daily_amount: 0,
         gotDaily: false
     }
+
+    componentDidMount() {
+        this.getResult();
+    }
     
-    getAmount() {
+    getAmount = () => {
         const { cookies } = this.props;
 
         let weight = parseInt(cookies.get('weight'));
@@ -44,13 +48,26 @@ class Main extends Component {
         }
     }
 
-    // getDailyAmount = () => {
-    //     return this.props.daily_amount;
-    // }
+    getDailyAmount = () => {
+        const {cur_amount} = this.props;
+        console.log(cur_amount);
+        this.setState(() => ({
+            daily_amount: cur_amount,
+            gotDaily: true 
+        }))
+    }
+
+    getResult = () => {
+        this.getDailyAmount();
+        if(this.state.daily_amount !== 0) {
+            return this.props.daily_amount;
+        } else {
+            console.log("not get it");
+        }
+    }
 
     render() {
-        const {daily_amount} = this.props;
-        
+        const {daily_amount} = this.state;
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
