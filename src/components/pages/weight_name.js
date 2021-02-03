@@ -16,17 +16,24 @@ class WeightNamePage extends Component {
         sex: "",
         weight: "",
         activity: "",
-        isSubmitted: true
+        isSubmitted: true,
+        warning: false,
     }
 
     nextPage = () => {
         this.props.history.push("/main");
     }
 
+    componentDidUpdate() {
+        // this.checkValidValue();
+    
+        this.eraseFunction();
+    }
+
     getName = () => {
-        let userName = document.getElementById("name").value;
+        let name = document.getElementById("name").value;
         this.setState(() => ({
-            name: userName
+            name
         }))
     }
 
@@ -36,42 +43,51 @@ class WeightNamePage extends Component {
         const radio2 = document.getElementById("female");
         const female = radio2.value;
 
-        if(radio1.checked === true) {
+        if(radio1.checked) {
             this.setState(() => ({
                 sex: male
             }))
         }
-        if(radio2.checked === true) {
+        if(radio2.checked) {
             this.setState(() => ({
                 sex: female
             }))
         }
     }
 
-    getWeightValue = () => {
-        let weight_var = document.getElementById("weight").value;
-        if(isNaN(weight_var % 1)) {
-            document.getElementById("weight").style = "background-color: red";
-            this.sliceString(weight_var);
-        } else {
-            this.setState(() => ({
-                weight: weight_var
-            }));
+    // multiGetFunction = (event) => {
+    //     let element = event.target.value
+
+    //     if(element === "weight") {
+    //         this.setState(()=>({
+    //             weight
+    //         }));
+    //     } else {
+    //         if(element === "activity") {
+    //             this.setState(()=>({
+    //                 activity
+    //             }));
+    //         }
+    //     }
+    // }
+
+    // checkValidValue = (elem) => {
+    //     let value = elem.value;
+    //     if(!isFinite(value)){
+    //         this.setState(() => ({
+    //             warning: true
+    //         }));
+    //         elem.style = "background-color: red"; 
+    //     } 
+    // }
+
+    eraseFunction = (element) => {
+        if(this.state.warning) {
+            let string = element.value,
+                lastSymbol = string.charAt(string.length - 1);
+            string.slice(lastSymbol, 0);
+            element.style =  "background-color: white"; 
         }
-    }
-
-    sliceString = (str) => {
-        let lastSymb = str.charAt(str.length - 1);
-        str.slice(lastSymb, 0);
-        
-        return lastSymb;
-    }
-
-    getActivity = () => {
-        let activity = document.getElementById("activity").value;
-        this.setState(() => ({
-            activity: activity
-        }))
     }
 
     getCookie = (name, sex, weight, activity) => {
@@ -89,7 +105,7 @@ class WeightNamePage extends Component {
     }
 
     goToNextPage = () => {
-        if(this.state.isSubmitted === true){
+        if(this.state.isSubmitted){
             this.nextPage();
         } else {
             alert("Fill out your data");
@@ -117,11 +133,11 @@ class WeightNamePage extends Component {
                     </div>
                     <div id="field">
                         <div id="ques">3) Your weight?</div>
-                        <input type="text" maxLength="3" id="weight" onChange={this.getWeightValue}/>
+                        <input type="text" maxLength="3" id="weight" />
                     </div>
                     <div id="field">
                         <div id="ques">4) How long you do exercises per day?</div>
-                        <input type="text" maxLength="3" id="activity" onChange={this.getActivity}></input>
+                        <input type="text" maxLength="3" id="activity" ></input>
                     </div>
                 </div>
                 <div id="btn">

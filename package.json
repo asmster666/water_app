@@ -2,11 +2,12 @@
   "homepage": "http://asmster666.github.io/water_app",
   "name": "water_app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
+    "bootstrap": "^5.0.0-beta1",
     "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

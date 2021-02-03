@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {get_type} from '../../actions';
 import './type_scroll.css';
 
 
 class Typescroll extends Component {
 
     state = {
-        array: ['water', 'juice', 'milk/kefir', 'coffee', 'tea', 'yoghurt', 'alcohol'],
-        cur_type: this.props.cur_type
+        array: ['water', 'juice', 'milk/kefir', 'coffee', 'tea', 'yoghurt', 'alcohol']
     }
 
     componentDidMount() {
@@ -29,39 +29,36 @@ class Typescroll extends Component {
         }
     }
 
-    nextSlide = (e) => {
-        if(e.keyCode === 38) {
-            alert("slide up");
-        }
-    }
+    getCurType = () => {
+        const slider = document.querySelector(".slider").children;
+        for(let slide of slider) {
+            if(slide.classList.contains("active_type")) {
+                let data = slide.textContent;
 
-    prevSlide = (e) => {
-        if(e.keyCode === 40) {
-            alert("slide down");
+                // update store
+                this.props.get_type(data);
+            }
         }
-    }
-
-    actions = (e) => {
-        document.querySelector(".type_scroll").style = "background-color: red";
-        this.prevSlide(e);
-        this.nextSlide(e);
     }
 
     render() {
+
         return (
             <div className="type_scroll">
-                <div className="wrap" onLoad={this.actions}>
-                    <div className="slider"></div> 
+                <div className="wrap">
+                    <i id="upp" className="bi bi-chevron-up" onClick={this.upSlide}></i>
+                    <div className="slider" onClick={this.getCurType} ></div> 
+                    <i id="downn" className="bi bi-chevron-down" onClick={this.downSlide}></i>
                 </div>
-            </div> 
+            </div>  
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        cur_type: state.cur_type
+        cur_type: state.type
     }
 }
 
-export default connect(mapStateToProps, null)(Typescroll);
+export default connect(mapStateToProps, {get_type})(Typescroll);

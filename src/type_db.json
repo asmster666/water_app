@@ -1,12 +1,12 @@
 {
     "drink": [
-        "water",
-        "juice",
-        "milk",
-        "coffee",
+        "water", 
+        "juice", 
+        "milk", 
+        "coffee", 
         "kefir",
-        "yogurt",
-        "alcohol",
-        "tea"
+        "yogurt", 
+        "alcohol", 
+        "tea" 
     ]
 }

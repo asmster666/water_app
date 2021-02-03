@@ -13,9 +13,6 @@ class Main extends Component {
     }
 
     state = {
-        cur_amount: this.props.cur_amount,
-        cur_type: this.props.cur_type,
-        daily_amount: 0,
         gotDaily: false
     }
 
@@ -48,22 +45,24 @@ class Main extends Component {
         }
     }
 
-    getDailyAmount = () => {
-        const {cur_amount} = this.props;
-        console.log(cur_amount);
+    getDailyAmount = ({cur_amount}) => {
         this.setState(() => ({
             daily_amount: cur_amount,
-            gotDaily: true 
+            gotDaily: true  
         }))
     }
 
     getResult = () => {
-        this.getDailyAmount();
+        this.getDailyAmount(this.props);
         if(this.state.daily_amount !== 0) {
             return this.props.daily_amount;
         } else {
             console.log("not get it");
         }
+    }
+
+    changeImage = () => {
+         
     }
 
     render() {

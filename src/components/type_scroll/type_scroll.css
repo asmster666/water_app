@@ -1,3 +1,4 @@
+
 .type_scroll {
     width: 14%;
     height: 28rem;
@@ -5,6 +6,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 4rem;
+}
+#upp {
+    margin-bottom: -3rem;
+    width: 40%;
+    height: 3rem;
 }
 .slider {
     width: 95%;

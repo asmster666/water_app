@@ -1,21 +1,13 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import {cur_amount} from '../../actions';
+import {get_cur_amount} from '../../actions';
 import './ml_scroll.css';
 
 
 class Mlscroll extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.nextSlide = this.nextSlide.bind(this);
-        this.prevSlide = this.prevSlide.bind(this);
-    }
-
     state = {
-        arr: [],
-        cur_amount: 0 
+        arr: []
     }
 
     componentDidMount() {
@@ -31,26 +23,28 @@ class Mlscroll extends Component {
     }
 
     nextSlide = () => {
-        for(let i = 0; i < this.state.arr.length; i++) {
-            if(this.state.arr[i].classList.contains("active")) {
-                this.state.arr[i].classList.remove("active");
-                this.state.arr[i-1].classList.add("active");
+        const {arr} = this.state;
+        for(let i = 0; i < arr.length; i++) {
+            if(arr[i].classList.contains("active")) {
+                arr[i].classList.remove("active");
+                arr[i-1].classList.add("active");
             }
 
-            if(this.state.arr[i].classList.contains("first") && this.state.arr[i].classList.contains("active")) {
+            if(arr[i].classList.contains("first") && arr[i].classList.contains("active")) {
                 break;
             }
         }
     } 
 
     prevSlide = () => {
-        for(let i = this.state.arr.length - 1; i > 0; i--) {
-            if(this.state.arr[i].classList.contains("active")) {
-                this.state.arr[i].classList.remove("active");
-                this.state.arr[i+1].classList.add("active");
+        const {arr} = this.state;
+        for(let i = arr.length - 1; i > 0; i--) {
+            if(arr[i].classList.contains("active")) {
+                arr[i].classList.remove("active");
+                arr[i+1].classList.add("active");
             }
 
-            if(this.state.arr[i].classList.contains("last") && this.state.arr[i].classList.contains("active")) {
+            if(arr[i].classList.contains("last") && arr[i].classList.contains("active")) {
                 break;
             }
         }
@@ -77,17 +71,19 @@ class Mlscroll extends Component {
     }
 
     getDaily = () => {
-        const wrap= document.querySelector(".wrapper").children;
+        const wrap = document.querySelector(".wrapper").children;
         for (let elem of wrap) {
             if(elem.classList.contains("active")){
-                this.setState(() => ({
-                    cur_amount: elem.textContent
-                }));
+                let data = elem.textContent;
+                
+                // update store
+                this.props.get_cur_amount(data);
             }
         }
     }
 
     render() {
+
         return (
             <div className="ml_scroll">
                 <button id="up" className="but" onClick={this.nextSlide}>△</button>
@@ -104,9 +100,5 @@ const mapStateToProps = (state) => {
         cur_amount: state.cur_amount
     }
 };
-
-const mapDispatchToProps = {
-    cur_amount
-}
  
-export default connect(mapStateToProps, mapDispatchToProps)(Mlscroll);
+export default connect(mapStateToProps, {get_cur_amount})(Mlscroll);
