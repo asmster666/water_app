@@ -6,7 +6,7 @@ import './pages.css';
 class WelcomePage extends Component {
     
     nextPage = () => {
-        this.props.history.push("/second");
+        this.props.history.push("/second"); 
     }
 
     render() {
@@ -16,7 +16,7 @@ class WelcomePage extends Component {
                     <div className="title">Water App</div>
                     <div id="glass" className="glass"></div>
                 </div>
-                <div className="wrap">
+                <div className="wrap_welcome">
                     <button id="but" className="start" onClick={this.nextPage}>start</button>
                     <div id="design">designed by Infinity Web</div>
                 </div>

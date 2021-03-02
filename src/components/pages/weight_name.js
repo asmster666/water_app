@@ -55,6 +55,20 @@ class WeightNamePage extends Component {
         }
     }
 
+    getWeight = () => {
+        const weight = document.querySelector("#weight").value;
+        this.setState(()=>({
+            weight
+        }));
+    }
+
+    getActivity = () => {
+        const activity = document.querySelector("#activity").value;
+        this.setState(()=>({
+            activity
+        }));
+    }
+
     // multiGetFunction = (event) => {
     //     let element = event.target.value
 
@@ -133,11 +147,11 @@ class WeightNamePage extends Component {
                     </div>
                     <div id="field">
                         <div id="ques">3) Your weight?</div>
-                        <input type="text" maxLength="3" id="weight" />
+                        <input type="text" maxLength="3" id="weight" onChange={this.getWeight}/>
                     </div>
                     <div id="field">
                         <div id="ques">4) How long you do exercises per day?</div>
-                        <input type="text" maxLength="3" id="activity" ></input>
+                        <input type="text" maxLength="3" id="activity" onChange={this.getActivity}></input>
                     </div>
                 </div>
                 <div id="btn">

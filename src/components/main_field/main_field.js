@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React,{Component} from "react";
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import {connect} from 'react-redux';
@@ -11,14 +11,6 @@ class Main extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     }
-
-    state = {
-        gotDaily: false
-    }
-
-    componentDidMount() {
-        this.getResult();
-    }
     
     getAmount = () => {
         const { cookies } = this.props;
@@ -28,12 +20,12 @@ class Main extends Component {
         let activity = parseInt(cookies.get('activity'));
 
         if(sex === "male") {
-            let result = weight * 35;
+            let result = weight * 35; 
             if(activity > 0) {
                 result += activity * (34/3);
             }
 
-            return Math.round(result, 2);
+            return Math.floor(result);
         }
         if(sex === "female") {
             let result = weight * 31;
@@ -41,38 +33,85 @@ class Main extends Component {
                 result += activity * (34/3); 
             }
 
-            return Math.round(result, 2); 
+            return Math.floor(result); 
         }
     }
 
-    getDailyAmount = ({cur_amount}) => {
-        this.setState(() => ({
-            daily_amount: cur_amount,
-            gotDaily: true  
-        }))
-    }
+    getResult = (amount, type) => {
+        if(type) {
+            let result;
+            switch (type) {
+                case "water":
+                    result = amount;
+                    break;
+                case "milk":
+                    result = (0.6 * amount).toFixed(2);
+                    break;
+                case "yoghurt":
+                    result = (0.7 * amount).toFixed(2);
+                    break;
+                case "coffee":
+                    result = (0.33 * amount).toFixed(2);
+                    break;
+                case "alcohol":
+                    result = (0.13 * amount).toFixed(2);
+                    break;
+                case "tea":
+                    result = (0.4 * amount).toFixed(2);
+                    break;
+                case "juice":
+                    result = (0.8 * amount).toFixed(2);
+                    break;
+                default: 
+                    result = amount;
+                    break;
+            }
 
-    getResult = () => {
-        this.getDailyAmount(this.props);
-        if(this.state.daily_amount !== 0) {
-            return this.props.daily_amount;
-        } else {
-            console.log("not get it");
+            this.updateSum(result);
         }
     }
 
-    changeImage = () => {
-         
+    updateSum = (data) => {
+        this.props.get_cur_daily_amount(data)
+    }
+
+    showSum = (sum) => {
+        return parseInt(sum);
+    }
+
+    progressBarFunction = (amount) => {
+        let css_var = document.querySelector(':root');
+
+        let result = parseInt(amount);
+        css_var.style.setProperty('--length_of_bar', `${result}rem`);
+
+        let procent = Math.floor((result / 12) * 100);
+        
+        this.procentProgressBar(procent);
+    }
+
+    procentProgressBar = (procent) => {
+        if(procent > 0) {
+            console.log(procent);
+            const text = document.querySelector("#bar_text");
+            text.innerHTML = `${procent}%`;
+        } 
     }
 
     render() {
-        const {daily_amount} = this.state;
+        const {cur_amount, cur_type, cur_daily_amount} = this.props;
+
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter">{daily_amount}/{this.getAmount()} ml</div>
-                    <div id="line"></div>
+                <div id="counter">{this.showSum(cur_daily_amount)}/{this.getAmount()} ml</div>
+                    <div className="bar">
+                        <div id="main_bar"></div>
+                        <div id="progress_bar" onChange={this.progressBarFunction(cur_daily_amount)}>
+                            <p id="bar_text">0%</p>
+                        </div> 
+                    </div>
                 </div>
             </div>
         )
@@ -81,7 +120,9 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        daily_amount: state.daily_amount
+        cur_amount: state.cur_amount,
+        cur_type: state.type,
+        cur_daily_amount: state.cur_daily_amount
     }
 }
 

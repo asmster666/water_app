@@ -112,7 +112,7 @@
     height: 10rem;
     align-items: center;
 } 
-.wrap {
+.wrap_welcome {
     display: flex; 
     justify-content: space-between;
     margin: 1rem;

@@ -14,12 +14,12 @@ const reducer = (state = initialState, action) => {
         case 'TYPE' :    
             return {
                 ...state,
-                type: action.payload
+                type: action.payload 
             };
         case 'CUR_DAILY_AMOUNT' :
             return {
                 ...state,
-                cur_daily_amount: state.cur_daily_amount
+                cur_daily_amount: state.cur_daily_amount + action.payload
             }
         default:
             return state;

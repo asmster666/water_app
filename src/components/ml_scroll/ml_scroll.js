@@ -20,6 +20,7 @@ class Mlscroll extends Component {
                 arr: newArray
             }));
         }
+        
     }
 
     nextSlide = () => {
@@ -31,7 +32,8 @@ class Mlscroll extends Component {
             }
 
             if(arr[i].classList.contains("first") && arr[i].classList.contains("active")) {
-                break;
+                arr[i].classList.remove("active");
+                arr[(arr.length -1) - 1].classList.add("active");
             }
         }
     } 
@@ -45,7 +47,8 @@ class Mlscroll extends Component {
             }
 
             if(arr[i].classList.contains("last") && arr[i].classList.contains("active")) {
-                break;
+                arr[i].classList.remove("active");
+                arr[0].classList.add("active");
             }
         }
     }
@@ -75,9 +78,9 @@ class Mlscroll extends Component {
         for (let elem of wrap) {
             if(elem.classList.contains("active")){
                 let data = elem.textContent;
-                
+
                 // update store
-                this.props.get_cur_amount(data);
+                this.props.get_cur_amount(data); 
             }
         }
     }
@@ -86,10 +89,10 @@ class Mlscroll extends Component {
 
         return (
             <div className="ml_scroll">
-                <button id="up" className="but" onClick={this.nextSlide}>△</button>
+                <i id="up" onClick={this.nextSlide} className="fas fa-chevron-circle-up"></i>
                 <div className="wrapper" onClick={this.getDaily}></div>
-                <button id="down" className="but" onClick={this.prevSlide}>▽</button>
-            </div>
+                <i id="down" onClick={this.prevSlide} className="fas fa-chevron-circle-down"></i>
+            </div>  
 
         )
     }

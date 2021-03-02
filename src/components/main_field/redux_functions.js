@@ -15,3 +15,9 @@ getValues = (item, selector) => {
 
 const{cur_amount, type} = this.props;
 
+
+
+getSum = () => {
+    
+}
+
