@@ -7,8 +7,9 @@ import './type_scroll.css';
 class Typescroll extends Component {
 
     state = {
-        array: ['water', 'milk', 'yoghurt', 'coffee', 'alcohol', 'tea', 'juice'],
-        arr: []
+        array: ['juice', 'water', 'milk', 'yoghurt', 'coffee', 'alcohol', 'tea', 'juice', 'water'],
+        arr: [],
+        counter: 1 
     }
 
     componentDidMount() {
@@ -26,15 +27,15 @@ class Typescroll extends Component {
             slider.appendChild(child);
             
             if(i === 0) {
-                child.classList.add("first");
+                child.classList.add("lastClone");
             }
             // get the middle elem the active class
-            if(i === 3) {
-                child.classList.add("active_type");
-            }
+            // if(i === 3) {
+            //     child.classList.add("active_type");
+            // }
 
-            if(i === (this.state.array.length - 1)) {
-                child.classList.add("last");
+            if(i === (this.state.array.length - 1)) { 
+                child.classList.add("firstClone");
             }
         }
     }
@@ -51,33 +52,58 @@ class Typescroll extends Component {
         }))
     }
 
-    // upSlide = () => {
-    //     const {arr} = this.state;
-    //     for(let j = 3; j > 0; j--) {
-    //         if(arr[j].classList.contains("active_type")) {
-    //             arr[j].classList.remove("active_type");
-    //             arr[j-1].classList.add("active_type");
-    //         } 
+    nextSlide = () => {
+        const {counter} = this.state;
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slider .slides");
+        console.log(slides.length);
+        const size = slides[0].clientHeight;
 
-    //         if(arr[j].classList.contains("first") && arr[j].classList.contains("active_type")) {
-    //             arr[j].classList.remove("active_type");
-    //             arr[(arr.length-1) - 1].classList.add("active_type");
-    //         }
-    //     }
-    // }
+        if(counter <= 0) return;
+        slider.style.transition = "transform 0.4s ease-in-out";
+
+        this.setState((state) => ({
+            counter: state.counter - 1
+        }))
+
+        slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
+    }
 
     downSlide = () => {
-        const {arr} = this.state;
-        for(let i = arr.length - 1; i > 0; i--) {
-            if(arr[i].classList.contains("active_type")) {
-                arr[i].classList.remove("active_type");
-                arr[i+1].classList.add("active_type");
-            } 
+        const {counter} = this.state;
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slider .slides");
+        const size = slides[0].clientHeight;
 
-            if(arr[i].classList.contains("last") && arr[i].classList.contains("active_type")) {
-                arr[i].classList.remove("active_type");
-                arr[0].classList.add("active_type");
-            }
+        if(counter >= slides.length -1) return;
+        slider.style.transition = "transform 0.4s ease-in-out";
+
+        this.setState((state) => ({
+            counter: state.counter + 1
+        }))
+
+        slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
+    }
+
+    workWithClones = () => {
+        const {counter} = this.state;
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slider .slides");
+        const size = slides[0].clientHeight;
+
+        if(slides[counter].id === "lastClone") {
+            slider.style.transition = "none";
+            this.setState(() => ({
+                counter: slides.length - 2
+            }))
+            slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
+        }
+        if(slides[counter].id === "firstClone") {
+            slider.style.transition = "none";
+            this.setState(() => ({
+                counter: slides.length - counter
+            }))
+            slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
         }
     }
 
@@ -97,9 +123,9 @@ class Typescroll extends Component {
 
         return (
             <div className="type_scroll">
-                <i id="upp" onClick={this.downSlide} className="fas fa-chevron-circle-up"></i>
-                <div className="slider" onClick={this.getCurType} ></div> 
-                <i id="downn" onClick={this.downSlide} className="fas fa-chevron-circle-down"></i>
+                <i class="upp_type" onClick={this.nextSlide} className="fas fa-chevron-circle-up">⬆️</i>
+                <div className="slider" onClick={this.getCurType} onTransitionEnd={this.workWithClones}></div> 
+                <i id="downn" onClick={this.downSlide} className="fas fa-chevron-circle-down">⬇️</i>
             </div>  
         )
     }
