@@ -51,11 +51,11 @@
     --length_of_bar: 0;
 }
 .bar {
-    width: 71%;
+    width: 70%;
     height: 2rem;
 }
 #main_bar {
-    width: 34%;
+    width: 25rem;
     height: 2rem;
     border-radius: 15px;
     background-color: rgb(0, 140, 255);

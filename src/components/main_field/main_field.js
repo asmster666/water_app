@@ -18,28 +18,32 @@ class Main extends Component {
         let weight = parseInt(cookies.get('weight'));
         let sex = cookies.get('sex');
         let activity = parseInt(cookies.get('activity'));
+        let result, data;
 
         if(sex === "male") {
-            let result = weight * 35; 
+            result = weight * 35; 
             if(activity > 0) {
                 result += activity * (34/3);
             }
-
-            return Math.floor(result);
+            data = Math.floor(result);
+            this.props.get_cookie_data(data);
+            return data
         }
+
         if(sex === "female") {
-            let result = weight * 31;
+            result = weight * 31;
             if(activity > 0) {
                 result += activity * (34/3); 
             }
-
-            return Math.floor(result); 
+            data = Math.floor(result);
+            this.props.get_cookie_data(data);
+            return data 
         }
     }
 
     getResult = (amount, type) => {
+        let result;
         if(type) {
-            let result;
             switch (type) {
                 case "water":
                     result = amount;
@@ -66,49 +70,53 @@ class Main extends Component {
                     result = amount;
                     break;
             }
-
-            this.updateSum(result);
         }
+
+        let data = parseInt(result);
+        this.updateSum(data);
     }
 
     updateSum = (data) => {
-        this.props.get_cur_daily_amount(data)
+        this.props.get_cur_daily_amount(data);
     }
 
     showSum = (sum) => {
         return parseInt(sum);
     }
 
-    progressBarFunction = (amount) => {
+    progressBarFunction = (amount, cookie_data) => {
         let css_var = document.querySelector(':root');
 
-        let result = parseInt(amount);
-        css_var.style.setProperty('--length_of_bar', `${result}rem`);
+        let parsing = parseInt(amount);
 
-        let procent = Math.floor((result / 12) * 100);
-        
-        this.procentProgressBar(procent);
+        if(cookie_data > 0) {
+            let result = Math.floor((((parsing / cookie_data) * 100) * 25) / 100);
+            css_var.style.setProperty('--length_of_bar', `${result}rem`);
+                
+            this.procentProgressBar(result);
+        }
     }
 
     procentProgressBar = (procent) => {
         if(procent > 0) {
-            console.log(procent);
             const text = document.querySelector("#bar_text");
             text.innerHTML = `${procent}%`;
         } 
-    }
+    } 
 
     render() {
-        const {cur_amount, cur_type, cur_daily_amount} = this.props;
+        const {cur_amount, cur_type, cur_daily_amount, cur_cookie_data} = this.props;
 
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter">{this.showSum(cur_daily_amount)}/{this.getAmount()} ml</div>
+                <div id="counter" onChange={this.getResult(cur_amount, cur_type)}>
+                    {cur_daily_amount}/{this.getAmount()} ml
+                </div>
                     <div className="bar">
                         <div id="main_bar"></div>
-                        <div id="progress_bar" onChange={this.progressBarFunction(cur_daily_amount)}>
+                        <div id="progress_bar" onChange={this.progressBarFunction(cur_daily_amount, cur_cookie_data)}>
                             <p id="bar_text">0%</p>
                         </div> 
                     </div>
@@ -122,7 +130,8 @@ const mapStateToProps = (state) => {
     return {
         cur_amount: state.cur_amount,
         cur_type: state.type,
-        cur_daily_amount: state.cur_daily_amount
+        cur_daily_amount: state.cur_daily_amount,
+        cur_cookie_data: state.cookie_data
     }
 }
 

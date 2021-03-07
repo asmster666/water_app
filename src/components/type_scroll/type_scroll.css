@@ -12,7 +12,7 @@
     flex-direction: column;
     position: absolute;
 }
-.upp_type {
+#upp_type {
     margin-bottom: -5rem;
 }
 #downn {
@@ -39,6 +39,10 @@
     color: rgb(81, 133, 236); 
     height: 3rem;
     width: 100%;
+    display: none;
+}
+.active {
+    display: block;
 }
 
 

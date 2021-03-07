@@ -29,10 +29,10 @@ class Typescroll extends Component {
             if(i === 0) {
                 child.classList.add("lastClone");
             }
-            // get the middle elem the active class
-            // if(i === 3) {
-            //     child.classList.add("active_type");
-            // }
+            // get the first elem the active class
+            if(i === 2) {
+                child.classList.add("active");
+            }
 
             if(i === (this.state.array.length - 1)) { 
                 child.classList.add("firstClone");
@@ -56,17 +56,17 @@ class Typescroll extends Component {
         const {counter} = this.state;
         const slider = document.querySelector(".slider");
         const slides = document.querySelectorAll(".slider .slides");
-        console.log(slides.length);
         const size = slides[0].clientHeight;
 
         if(counter <= 0) return;
         slider.style.transition = "transform 0.4s ease-in-out";
 
         this.setState((state) => ({
-            counter: state.counter - 1
+            counter: state.counter--
         }))
 
-        slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
+        slider.style.transform = 'translateY(' + (-size * 2*counter) + 'px)';
+        slides[counter].classList.add("active");
     }
 
     downSlide = () => {
@@ -79,10 +79,11 @@ class Typescroll extends Component {
         slider.style.transition = "transform 0.4s ease-in-out";
 
         this.setState((state) => ({
-            counter: state.counter + 1
+            counter: state.counter++
         }))
 
         slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
+        slides[counter].classList.add("active");
     }
 
     workWithClones = () => {
@@ -91,14 +92,14 @@ class Typescroll extends Component {
         const slides = document.querySelectorAll(".slider .slides");
         const size = slides[0].clientHeight;
 
-        if(slides[counter].id === "lastClone") {
+        if(slides[counter].className === "lastClone") {
             slider.style.transition = "none";
             this.setState(() => ({
                 counter: slides.length - 2
             }))
             slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
         }
-        if(slides[counter].id === "firstClone") {
+        if(slides[counter].className === "firstClone") {
             slider.style.transition = "none";
             this.setState(() => ({
                 counter: slides.length - counter
@@ -110,7 +111,7 @@ class Typescroll extends Component {
     getCurType = () => {
         const slider = document.querySelector(".slider").children;
         for(let slide of slider) {
-            if(slide.classList.contains("active_type")) {
+            if(slide.classList.contains("active")) {
                 let data = slide.textContent;
 
                 // update store
@@ -123,7 +124,7 @@ class Typescroll extends Component {
 
         return (
             <div className="type_scroll">
-                <i class="upp_type" onClick={this.nextSlide} className="fas fa-chevron-circle-up">⬆️</i>
+                <i id="upp_type" onClick={this.nextSlide} className="fas fa-chevron-circle-up">⬆️</i>
                 <div className="slider" onClick={this.getCurType} onTransitionEnd={this.workWithClones}></div> 
                 <i id="downn" onClick={this.downSlide} className="fas fa-chevron-circle-down">⬇️</i>
             </div>  
