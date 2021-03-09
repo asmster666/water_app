@@ -1,4 +1,7 @@
 const initialState = {
+    weight: 0,
+    activity: 0,
+    sex: "",
     cur_amount: 0,
     type: "",
     cur_daily_amount: 0,
@@ -7,6 +10,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case 'WEIGHT_TEST' :
+            return {
+                ...state,
+                weight: action.payload
+            };
+        case 'ACTIVITY_TEST' :
+            return {
+                ...state,
+                activity: action.payload
+            };
+        case 'SEX_TEST' :
+            return {
+                ...state,
+                sex: action.payload
+            };
         case 'CUR_AMOUNT' :
             return {
                 ...state,

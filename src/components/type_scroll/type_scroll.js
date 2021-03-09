@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {get_type} from '../../actions';
+import * as actions from '../../actions';
 import './type_scroll.css';
 
 
@@ -8,16 +8,14 @@ class Typescroll extends Component {
 
     state = {
         array: ['juice', 'water', 'milk', 'yoghurt', 'coffee', 'alcohol', 'tea', 'juice', 'water'],
-        arr: [],
         counter: 1 
     }
 
     componentDidMount() {
         this.buildSlider();
-        this.fillUpSlideArray();
     }
 
-    buildSlider = () => {
+    buildSlider = () => { 
         const slider = document.querySelector(".slider");
         for(let i = 0; i < this.state.array.length; i++) {
             let child = document.createElement("div");
@@ -30,8 +28,8 @@ class Typescroll extends Component {
                 child.classList.add("lastClone");
             }
             // get the first elem the active class
-            if(i === 2) {
-                child.classList.add("active");
+            if(i === 1) {
+                child.classList.add("active_type");
             }
 
             if(i === (this.state.array.length - 1)) { 
@@ -40,50 +38,43 @@ class Typescroll extends Component {
         }
     }
 
-    fillUpSlideArray = () => {
-        const slider = document.querySelector(".slider").children;
-        let slidesArray = [];
-        for(let elem of slider) {
-            slidesArray.push(elem);
-        }
-
-        this.setState(() => ({
-            arr: slidesArray 
-        }))
-    }
-
     nextSlide = () => {
+        console.log("up");
         const {counter} = this.state;
         const slider = document.querySelector(".slider");
         const slides = document.querySelectorAll(".slider .slides");
         const size = slides[0].clientHeight;
 
         if(counter <= 0) return;
+
+        slides[counter].classList.remove("active_type");
         slider.style.transition = "transform 0.4s ease-in-out";
 
         this.setState((state) => ({
             counter: state.counter--
         }))
 
-        slider.style.transform = 'translateY(' + (-size * 2*counter) + 'px)';
-        slides[counter].classList.add("active");
+        console.log(this.state.counter);
+        slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
     }
 
     downSlide = () => {
+        console.log("down");
         const {counter} = this.state;
         const slider = document.querySelector(".slider");
         const slides = document.querySelectorAll(".slider .slides");
         const size = slides[0].clientHeight;
 
         if(counter >= slides.length -1) return;
+        slides[counter].classList.remove("active_type");
         slider.style.transition = "transform 0.4s ease-in-out";
 
         this.setState((state) => ({
             counter: state.counter++
         }))
 
+        slides[counter].classList.add("active_type");
         slider.style.transform = 'translateY(' + (-size * counter) + 'px)';
-        slides[counter].classList.add("active");
     }
 
     workWithClones = () => {
@@ -111,7 +102,7 @@ class Typescroll extends Component {
     getCurType = () => {
         const slider = document.querySelector(".slider").children;
         for(let slide of slider) {
-            if(slide.classList.contains("active")) {
+            if(slide.classList.contains("active_type")) {
                 let data = slide.textContent;
 
                 // update store
@@ -138,4 +129,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {get_type})(Typescroll);
+export default connect(mapStateToProps, actions)(Typescroll);

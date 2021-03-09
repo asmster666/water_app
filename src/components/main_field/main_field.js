@@ -13,27 +13,23 @@ class Main extends Component {
     }
     
     getAmount = () => {
-        const { cookies } = this.props;
-
-        let weight = parseInt(cookies.get('weight'));
-        let sex = cookies.get('sex');
-        let activity = parseInt(cookies.get('activity'));
+        const { cur_weight, cur_activity, cur_sex } = this.props;
         let result, data;
 
-        if(sex === "male") {
-            result = weight * 35; 
-            if(activity > 0) {
-                result += activity * (34/3);
+        if(cur_sex === "male") {
+            result = cur_weight * 35; 
+            if(cur_activity > 0) {
+                result += cur_activity * (34/3);
             }
             data = Math.floor(result);
             this.props.get_cookie_data(data);
             return data
         }
 
-        if(sex === "female") {
-            result = weight * 31;
-            if(activity > 0) {
-                result += activity * (34/3); 
+        if(cur_sex === "female") {
+            result = cur_weight * 31;
+            if(cur_activity > 0) {
+                result += cur_activity * (34/3); 
             }
             data = Math.floor(result);
             this.props.get_cookie_data(data);
@@ -90,7 +86,7 @@ class Main extends Component {
         let parsing = parseInt(amount);
 
         if(cookie_data > 0) {
-            let result = Math.floor((((parsing / cookie_data) * 100) * 25) / 100);
+            let result = ((((parsing / cookie_data) * 100) * 25) / 100).toFixed(1);
             css_var.style.setProperty('--length_of_bar', `${result}rem`);
                 
             this.procentProgressBar(result);
@@ -105,18 +101,18 @@ class Main extends Component {
     } 
 
     render() {
-        const {cur_amount, cur_type, cur_daily_amount, cur_cookie_data} = this.props;
+        const {cur_amount, type, cur_daily_amount, cookie_data} = this.props;
 
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter" onChange={this.getResult(cur_amount, cur_type)}>
-                    {cur_daily_amount}/{this.getAmount()} ml
+                <div id="counter" onChange={this.getResult(cur_amount, type)}>
+                    {this.showSum(cur_daily_amount)}/{this.getAmount()} ml
                 </div>
                     <div className="bar">
                         <div id="main_bar"></div>
-                        <div id="progress_bar" onChange={this.progressBarFunction(cur_daily_amount, cur_cookie_data)}>
+                        <div id="progress_bar" onChange={this.progressBarFunction(cur_daily_amount, cookie_data)}>
                             <p id="bar_text">0%</p>
                         </div> 
                     </div>
@@ -128,11 +124,14 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        cur_weight: state.weight,
+        cur_activity: state.activity,
+        cur_sex: state.sex,
         cur_amount: state.cur_amount,
-        cur_type: state.type,
+        type: state.type,
         cur_daily_amount: state.cur_daily_amount,
-        cur_cookie_data: state.cookie_data
+        cookie_data: state.cookie_data
     }
 }
 
-export default connect(mapStateToProps, actions)(withCookies(Main));
+export default withCookies(connect(mapStateToProps, actions)(Main));
