@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Main from '../main_field';
+import Main1 from '../main_field';
 import Mlscroll from '../ml_scroll';
 import Typescroll from '../type_scroll';
 import Statistics from '../statistic';
@@ -11,7 +11,7 @@ class MainPage extends Component {
     render() {
         return(
             <div className="appl">
-                <Main/>
+                <Main1 />
                 <Mlscroll/>
                 <Typescroll/>
                 <Statistics/>
