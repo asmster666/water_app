@@ -1,5 +1,5 @@
-import Main1 from './main_field';
-export default Main1;
+import Main from './main_field';
+export default Main;
 
 
 

@@ -11,9 +11,21 @@ class Main extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     }
+
+    state = {
+        sum: 0
+    }
+
+    componentDidUpdate() {
+        this.getAmount();
+        this.getResult(this.props.cur_amount, this.props.type);
+    }
     
     getAmount = () => {
-        const { cur_weight, cur_activity, cur_sex } = this.props;
+        const { cookies } = this.props;
+        let cur_sex = cookies.get('sex');
+        let cur_weight = cookies.get('weight');
+        let cur_activity = cookies.get('activity');
         let result, data;
 
         if(cur_sex === "male") {
@@ -73,11 +85,15 @@ class Main extends Component {
     }
 
     updateSum = (data) => {
-        this.props.get_cur_daily_amount(data);
+        this.props.get_cur_daily_amount(data)
     }
 
     showSum = (sum) => {
-        return parseInt(sum);
+        if(isNaN(sum)) {
+            return 0;
+        } else {
+            return parseInt(sum);
+        }
     }
 
     progressBarFunction = (amount, cookie_data) => {
@@ -101,14 +117,14 @@ class Main extends Component {
     } 
 
     render() {
-        const {cur_amount, type, cur_daily_amount, cookie_data} = this.props;
+        const {cur_daily_amount, cookie_data} = this.props;
 
         return (
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter" onChange={this.getResult(cur_amount, type)}>
-                    {this.showSum(cur_daily_amount)}/{this.getAmount()} ml
+                <div id="counter">
+                    {this.showSum(cur_daily_amount)}/{cookie_data} ml
                 </div>
                     <div className="bar">
                         <div id="main_bar"></div>

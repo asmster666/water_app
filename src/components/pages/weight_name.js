@@ -15,6 +15,9 @@ class WeightNamePage extends Component {
     
     state = {
         name: "",
+        sex: "",
+        weight: 0,
+        activity: 0,
         isSubmitted: true,
         warning: false,
     }
@@ -39,9 +42,15 @@ class WeightNamePage extends Component {
         const female = radio2.value;
 
         if(radio1.checked) {
+            this.setState(() => ({
+                sex: male
+            }))
             this.props.get_sex_test(male);
         }
         if(radio2.checked) {
+            this.setState(() => ({
+                sex: female
+            }))
             this.props.get_sex_test(female);
         }
     }
@@ -49,11 +58,20 @@ class WeightNamePage extends Component {
     getWeightTest = () => {
         let weight = document.querySelector("#weight").value;
 
+        this.setState(() => ({
+            weight
+        }))
+
         this.props.get_weight_test(weight);
     }
 
     getActivityTest = () => {
         let activity = document.querySelector("#activity").value;
+
+        this.setState(() => ({
+            activity
+        })) 
+
         this.props.get_activity_test(activity);
     }
 
@@ -76,10 +94,13 @@ class WeightNamePage extends Component {
         }
     }
 
-    getCookie = (name) => {
+    getCookie = (name, sex, weight, activity) => {
         const { cookies } = this.props;
 
         cookies.set('name', name, { path: '/' });
+        cookies.set('sex', sex, { path: '/' });
+        cookies.set('weight', weight, { path: '/' });
+        cookies.set('activity', activity, { path: '/' });
 
         const next = document.querySelector(".next");
         next.style = "display: block";
@@ -128,7 +149,7 @@ class WeightNamePage extends Component {
                     </div>
                 </div>
                 <div id="btn">
-                    <button id="but" className="submit" onClick={()  => this.getCookie(name)}>submit</button>
+                    <button id="but" className="submit" onClick={()  => this.getCookie(name, sex, weight, activity)}>submit</button>
                     <button id="but" className="next" onClick={this.goToNextPage}>next</button>
                 </div>
             </div>

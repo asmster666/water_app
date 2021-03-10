@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
 function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur_activity, cur_sex}) {
+
+    // useEffect(() => {
+
+    // }, [])
 
     function getAmount(weight, activity, sex){
         let result, data;
@@ -60,16 +64,20 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
         }
     
         let data = parseInt(result);
-        //updateSum(data);
+        updateSum(data);
     }
 
-    // function updateSum(data) {
-    //     this.props.get_cur_daily_amount(data);
-    // }
+    function updateSum(data) {
+        this.props.get_cur_daily_amount(data)
+    }
 
-    // function showSum(sum) {
-    //     return parseInt(sum);
-    // }
+    function showSum(sum) {
+        if(isNaN(sum)) {
+            return 0;
+        } else {
+            return parseInt(sum);
+        }
+    }
 
     function progressBarFunction(amount, cookie_data) {
         let css_var = document.querySelector(':root');
@@ -97,7 +105,7 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
             <div id="glass" className="glass"></div>
             <div id="measure">
             <div id="counter" onChange={getResult(cur_amount, type)}>
-                    {cur_daily_amount}/{getAmount(cur_weight, cur_activity, cur_sex)} ml
+                    {showSum(cur_daily_amount)}/{getAmount(cur_weight, cur_activity, cur_sex)} ml
             </div>
                 <div className="bar">
                     <div id="main_bar"></div>
