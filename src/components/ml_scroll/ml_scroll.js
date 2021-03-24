@@ -89,9 +89,13 @@ class Mlscroll extends Component {
 
         return (
             <div className="ml_scroll">
-                <i id="up" onClick={this.nextSlide} className="fas fa-chevron-circle-up">⬆️</i>
+                <div id="up" onClick={this.nextSlide}>
+                    <div id="img1"></div>
+                </div>
                 <div className="wrapper" onClick={this.getDaily}></div>
-                <i id="down" onClick={this.prevSlide} className="fas fa-chevron-circle-down">⬇️</i>
+                <div id="down" onClick={this.prevSlide}>
+                    <div id="img2"></div>
+                </div>
             </div>  
 
         )

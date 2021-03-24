@@ -185,7 +185,7 @@
 /*-----------responsive-----------*/
 
 /* Mobile version (<600px) */
-@media only screen and (max-width: 599px) {
+@media screen and (max-width: 599px) {
     .form1, .form2 {
         width: 80%;
     }
@@ -195,21 +195,21 @@
 }
 
 /* Tablet version (portrait) >600px */
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
     .form1, .form2 {
         width: 70%;
     }
 }
 
 /* Tablet version (landscape) >900px */
-@media only screen and (min-width: 900px) {
+@media screen and (min-width: 900px) {
     .form1, .form2 {
         width: 50%;
     }
 }
 
 /* Desktop version (>1200px) */
-@media only screen and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     .form1, .form2 {
         width: 40%;
     }

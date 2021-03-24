@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
-function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur_activity, cur_sex}) {
+import './main_field.css';
+
+function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur_activity, cur_sex, get_cookie_data, get_cur_daily_amount}) {
 
     // useEffect(() => {
 
     // }, [])
 
-    function getAmount(weight, activity, sex){
+    function getAmount(weight, activity, sex, get_cookie_data){
         let result, data;
     
         if(sex === "male") {
@@ -17,7 +19,7 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
                 result += activity * (34/3);
             }
             data = Math.floor(result);
-            this.props.get_cookie_data(data);
+            get_cookie_data(data);
             return data
         }
     
@@ -27,7 +29,7 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
                 result += activity * (34/3); 
             }
             data = Math.floor(result);
-            this.props.get_cookie_data(data);
+            get_cookie_data(data);
             return data 
         }
     }
@@ -64,11 +66,11 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
         }
     
         let data = parseInt(result);
-        updateSum(data);
+        updateSum(data, get_cur_daily_amount);
     }
 
-    function updateSum(data) {
-        this.props.get_cur_daily_amount(data)
+    function updateSum(data, props) {
+        props(data)
     }
 
     function showSum(sum) {
@@ -97,7 +99,7 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
             const text = document.querySelector("#bar_text");
             text.innerHTML = `${procent}%`;
         } 
-    }
+    } 
     
 
     return (
@@ -105,7 +107,7 @@ function Main1({cur_amount, type, cur_daily_amount, cookie_data, cur_weight, cur
             <div id="glass" className="glass"></div>
             <div id="measure">
             <div id="counter" onChange={getResult(cur_amount, type)}>
-                    {showSum(cur_daily_amount)}/{getAmount(cur_weight, cur_activity, cur_sex)} ml
+                    {showSum(cur_daily_amount)}/{getAmount(cur_weight, cur_activity, cur_sex, get_cookie_data)} ml
             </div>
                 <div className="bar">
                     <div id="main_bar"></div>

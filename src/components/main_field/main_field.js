@@ -12,13 +12,12 @@ class Main extends Component {
         cookies: instanceOf(Cookies).isRequired
     }
 
-    state = {
-        sum: 0
+    componentDidMount() {
+        this.getCookieData(this.getAmount());
     }
 
     componentDidUpdate() {
-        this.getAmount();
-        this.getResult(this.props.cur_amount, this.props.type);
+        this.updateSum(this.getResult(this.props.cur_amount, this.props.type)); 
     }
     
     getAmount = () => {
@@ -33,9 +32,7 @@ class Main extends Component {
             if(cur_activity > 0) {
                 result += cur_activity * (34/3);
             }
-            data = Math.floor(result);
-            this.props.get_cookie_data(data);
-            return data
+            data = Math.floor(result); 
         }
 
         if(cur_sex === "female") {
@@ -44,9 +41,13 @@ class Main extends Component {
                 result += cur_activity * (34/3); 
             }
             data = Math.floor(result);
-            this.props.get_cookie_data(data);
-            return data 
         }
+
+        return data
+    }
+
+    getCookieData = (item) => {
+        this.props.get_cookie_data(item);
     }
 
     getResult = (amount, type) => {
@@ -81,7 +82,7 @@ class Main extends Component {
         }
 
         let data = parseInt(result);
-        this.updateSum(data);
+        //this.updateSum(data);
     }
 
     updateSum = (data) => {
@@ -124,7 +125,7 @@ class Main extends Component {
                 <div id="glass" className="glass"></div>
                 <div id="measure">
                 <div id="counter">
-                    {this.showSum(cur_daily_amount)}/{cookie_data} ml
+                    {this.showSum(cur_daily_amount)}/{this.getAmount()} ml
                 </div>
                     <div className="bar">
                         <div id="main_bar"></div>

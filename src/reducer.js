@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
             let sum = state.cur_daily_amount + action.payload;
             return {
                 ...state,
-                cur_daily_amount: sum
+                cur_daily_amount: action.payload
             };
         case 'COOKIE_DATA' :
             return {
