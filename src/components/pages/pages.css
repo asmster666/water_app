@@ -21,6 +21,7 @@
     height: 0;
     background-color: transparent;
     border: 10px solid transparent;
+    border-radius: 5px;
     top: -10px;
     left: -10px; 
 }
@@ -60,6 +61,7 @@
     height: 0;
     background-color: transparent;
     border: 10px solid transparent;
+    border-radius: 5px;
     top: -10px;
     left: -10px; 
 }
@@ -125,11 +127,16 @@
 }
 #but {
     background-color: rgb(26, 138, 243);
-    border-color: rgb(26, 138, 243);
+    border-color: transparent;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
     height: 3rem;
+    outline-style: inherit;
 }
 .start {
     width: 20%;
@@ -139,6 +146,7 @@
 .form2 {
     justify-content: space-between;
     border: 10px solid blue;
+    border-radius: 5px;
 }
 .wrapper2 {
     display: flex;
@@ -180,6 +188,7 @@
     margin: 2rem auto;
     flex-flow: row wrap;
     border: 5px solid blue;
+    border-radius: 5px;
 }
 
 /*-----------responsive-----------*/

@@ -12,12 +12,18 @@ class Main extends Component {
         cookies: instanceOf(Cookies).isRequired
     }
 
+    state = {
+        sum: 0
+    }
+
     componentDidMount() {
         this.getCookieData(this.getAmount());
+        //this.updateCurDaily(this.getResult(this.props.cur_amount, this.props.type));
     }
 
     componentDidUpdate() {
-        this.updateSum(this.getResult(this.props.cur_amount, this.props.type)); 
+        this.updateCurDaily(this.getResult(this.props.cur_amount, this.props.type));
+        this.updateSum();
     }
     
     getAmount = () => {
@@ -48,6 +54,7 @@ class Main extends Component {
 
     getCookieData = (item) => {
         this.props.get_cookie_data(item);
+        console.log("get_cookie_data");
     }
 
     getResult = (amount, type) => {
@@ -82,18 +89,29 @@ class Main extends Component {
         }
 
         let data = parseInt(result);
-        //this.updateSum(data);
+        return data;
     }
 
-    updateSum = (data) => {
-        this.props.get_cur_daily_amount(data)
+    updateCurDaily = (data) => {
+        this.props.get_cur_daily_amount(data);
     }
 
-    showSum = (sum) => {
+    showCurDaily = (sum) => {
         if(isNaN(sum)) {
             return 0;
         } else {
-            return parseInt(sum);
+            return sum
+        }
+    }
+
+    updateSum = () => {
+        const {cur_daily_amount, sum_daily_amount} = this.props;
+
+        if(cur_daily_amount !== null) {
+            let res = parseInt(cur_daily_amount);
+            console.log(isNaN(res))
+            this.props.get_sum_daily_amount(res);
+            console.log(isNaN(sum_daily_amount));
         }
     }
 
@@ -125,7 +143,7 @@ class Main extends Component {
                 <div id="glass" className="glass"></div>
                 <div id="measure">
                 <div id="counter">
-                    {this.showSum(cur_daily_amount)}/{this.getAmount()} ml
+                    {this.showCurDaily(cur_daily_amount)}/{this.getAmount()} ml
                 </div>
                     <div className="bar">
                         <div id="main_bar"></div>
@@ -147,6 +165,7 @@ const mapStateToProps = (state) => {
         cur_amount: state.cur_amount,
         type: state.type,
         cur_daily_amount: state.cur_daily_amount,
+        sum_daily_amount: state.sum_daily_amount,
         cookie_data: state.cookie_data
     }
 }

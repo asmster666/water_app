@@ -15,6 +15,10 @@ class Typescroll extends Component {
         this.buildSlider();
     }
 
+    componentDidUpdate() {
+
+    }
+
     buildSlider = () => { 
         const slider = document.querySelector(".slider");
         for(let i = 0; i < this.state.array.length; i++) {
@@ -22,7 +26,20 @@ class Typescroll extends Component {
             let text = document.createTextNode(`${this.state.array[i]}`);
             child.append(text);
             child.classList.add("slides");
+            child.addEventListener('click', () => this.addActive(child));
             slider.appendChild(child);
+        }
+    }
+
+    addActive = (item) => {
+        item.classList.add("slides_clicked", "active_type");
+    }
+
+    checkOneActiveElemExist = (elem) => {
+        for(let kid of elem) {
+            if(!kid.classList.contains("active_type")) {
+                kid.style = "pointer-events:none;"; 
+            }
         }
     }
 
@@ -30,10 +47,12 @@ class Typescroll extends Component {
         const slider = document.querySelector(".slider").children;
         for(let slide of slider) {
             if(slide.classList.contains("active_type")) {
-                let data = slide.textContent;
+                let data = slide.textContent; 
 
                 // update store
                 this.props.get_type(data);
+            } else {
+                this.checkOneActiveElemExist(slider);
             }
         }
     }
@@ -43,7 +62,7 @@ class Typescroll extends Component {
         return (
             <div className="type_scroll">
                 <div className="slides_cover">
-                    <div className="slider" onClick={this.getCurType} onTransitionEnd={this.cloneSlides}></div>
+                    <div className="slider" onClick={this.getCurType}></div>
                 </div>
             </div>  
         )

@@ -28,13 +28,14 @@
 }
 .slides {
     padding: 0.5rem 0 0.5rem 0;
-    text-align: center;
-    color: rgb(81, 133, 236, 0.4);  
+    text-align: center; 
     height: 2rem;
+    color: rgb(81, 133, 236, 0.4);
 } 
-/* .active_type {
-    margin-top: 6rem;
-} */
+.slides_clicked {
+    color: rgb(81, 133, 236); 
+    text-shadow: 0 0 20px rgba(20, 118, 255, 0.5);
+}
 
 
 /* --------------Responsive design-------------- */
