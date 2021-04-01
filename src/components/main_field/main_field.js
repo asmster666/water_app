@@ -104,14 +104,22 @@ class Main extends Component {
         }
     }
 
+    changeSum = (daily) => {
+        if(daily !== 0) {
+            this.setState((state) => ({
+                sum: state.sum + daily
+            }))
+        } else {
+            console.log(" nothing to change sum");
+        }
+    }
+
     updateSum = () => {
-        const {cur_daily_amount, sum_daily_amount} = this.props;
+        const {cur_daily_amount} = this.props;
 
         if(cur_daily_amount !== null) {
             let res = parseInt(cur_daily_amount);
-            console.log(isNaN(res))
             this.props.get_sum_daily_amount(res);
-            console.log(isNaN(sum_daily_amount));
         }
     }
 
@@ -142,7 +150,7 @@ class Main extends Component {
             <div className="main">
                 <div id="glass" className="glass"></div>
                 <div id="measure">
-                <div id="counter">
+                <div id="counter" onChange={() => this.changeSum()}>
                     {this.showCurDaily(cur_daily_amount)}/{this.getAmount()} ml
                 </div>
                     <div className="bar">

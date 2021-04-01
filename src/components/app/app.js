@@ -13,7 +13,7 @@ class App extends Component {
                 <Router>
                     <div className="app">
                         <Switch>
-                            <Route path="/water_app" exact component={WelcomePage}></Route>
+                            <Route path="/" exact component={WelcomePage}></Route>
                             <Route path="/second" render={() => (<WeightNamePage cookies={this.props.cookies}/>)}></Route>
                             <Route path="/main" render={() => (<MainPage cookies={this.props.cookies}/>)}></Route>
                         </Switch>
