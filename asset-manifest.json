@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.bb03aa3a.chunk.css",
-    "main.js": "/static/js/main.e1199e0f.chunk.js",
-    "main.js.map": "/static/js/main.e1199e0f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6d41e598.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6d41e598.js.map",
-    "static/js/2.408e0a13.chunk.js": "/static/js/2.408e0a13.chunk.js",
-    "static/js/2.408e0a13.chunk.js.map": "/static/js/2.408e0a13.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.bb03aa3a.chunk.css.map": "/static/css/main.bb03aa3a.chunk.css.map",
-    "static/js/2.408e0a13.chunk.js.LICENSE.txt": "/static/js/2.408e0a13.chunk.js.LICENSE.txt",
-    "static/media/main_field.css": "/static/media/yoghurt.96ca3a23.jpg"
+    "main.css": "/water_app/static/css/main.8368edcf.chunk.css",
+    "main.js": "/water_app/static/js/main.e1199e0f.chunk.js",
+    "main.js.map": "/water_app/static/js/main.e1199e0f.chunk.js.map",
+    "runtime-main.js": "/water_app/static/js/runtime-main.bc1643ea.js",
+    "runtime-main.js.map": "/water_app/static/js/runtime-main.bc1643ea.js.map",
+    "static/js/2.408e0a13.chunk.js": "/water_app/static/js/2.408e0a13.chunk.js",
+    "static/js/2.408e0a13.chunk.js.map": "/water_app/static/js/2.408e0a13.chunk.js.map",
+    "index.html": "/water_app/index.html",
+    "static/css/main.8368edcf.chunk.css.map": "/water_app/static/css/main.8368edcf.chunk.css.map",
+    "static/js/2.408e0a13.chunk.js.LICENSE.txt": "/water_app/static/js/2.408e0a13.chunk.js.LICENSE.txt",
+    "static/media/main_field.css": "/water_app/static/media/yoghurt.96ca3a23.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6d41e598.js",
+    "static/js/runtime-main.bc1643ea.js",
     "static/js/2.408e0a13.chunk.js",
-    "static/css/main.bb03aa3a.chunk.css",
+    "static/css/main.8368edcf.chunk.css",
     "static/js/main.e1199e0f.chunk.js"
   ]
 }
