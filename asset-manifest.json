@@ -1,23 +1,21 @@
 {
   "files": {
-    "main.css": "/waterapp.github.io/static/css/main.3adfd85d.chunk.css",
-    "main.js": "/waterapp.github.io/static/js/main.4c8ff1f7.chunk.js",
-    "main.js.map": "/waterapp.github.io/static/js/main.4c8ff1f7.chunk.js.map",
-    "runtime-main.js": "/waterapp.github.io/static/js/runtime-main.8f05c623.js",
-    "runtime-main.js.map": "/waterapp.github.io/static/js/runtime-main.8f05c623.js.map",
-    "static/js/2.d7432baf.chunk.js": "/waterapp.github.io/static/js/2.d7432baf.chunk.js",
-    "static/js/2.d7432baf.chunk.js.map": "/waterapp.github.io/static/js/2.d7432baf.chunk.js.map",
-    "static/js/3.466e82a0.chunk.js": "/waterapp.github.io/static/js/3.466e82a0.chunk.js",
-    "static/js/3.466e82a0.chunk.js.map": "/waterapp.github.io/static/js/3.466e82a0.chunk.js.map",
-    "index.html": "/waterapp.github.io/index.html",
-    "static/css/main.3adfd85d.chunk.css.map": "/waterapp.github.io/static/css/main.3adfd85d.chunk.css.map",
-    "static/js/2.d7432baf.chunk.js.LICENSE.txt": "/waterapp.github.io/static/js/2.d7432baf.chunk.js.LICENSE.txt",
-    "static/media/main_field.css": "/waterapp.github.io/static/media/flat-design-water-glass-icon-cartoon-style-isolated-white-background-soda-glass-vector-illustration-liquid-water-business-157410619.59fce108.jpg"
+    "main.css": "/static/css/main.bb03aa3a.chunk.css",
+    "main.js": "/static/js/main.e1199e0f.chunk.js",
+    "main.js.map": "/static/js/main.e1199e0f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6d41e598.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6d41e598.js.map",
+    "static/js/2.408e0a13.chunk.js": "/static/js/2.408e0a13.chunk.js",
+    "static/js/2.408e0a13.chunk.js.map": "/static/js/2.408e0a13.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.bb03aa3a.chunk.css.map": "/static/css/main.bb03aa3a.chunk.css.map",
+    "static/js/2.408e0a13.chunk.js.LICENSE.txt": "/static/js/2.408e0a13.chunk.js.LICENSE.txt",
+    "static/media/main_field.css": "/static/media/yoghurt.96ca3a23.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8f05c623.js",
-    "static/js/2.d7432baf.chunk.js",
-    "static/css/main.3adfd85d.chunk.css",
-    "static/js/main.4c8ff1f7.chunk.js"
+    "static/js/runtime-main.6d41e598.js",
+    "static/js/2.408e0a13.chunk.js",
+    "static/css/main.bb03aa3a.chunk.css",
+    "static/js/main.e1199e0f.chunk.js"
   ]
 }
