@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/water_app/static/css/main.8368edcf.chunk.css",
-    "main.js": "/water_app/static/js/main.e1199e0f.chunk.js",
-    "main.js.map": "/water_app/static/js/main.e1199e0f.chunk.js.map",
+    "main.js": "/water_app/static/js/main.72be36e4.chunk.js",
+    "main.js.map": "/water_app/static/js/main.72be36e4.chunk.js.map",
     "runtime-main.js": "/water_app/static/js/runtime-main.bc1643ea.js",
     "runtime-main.js.map": "/water_app/static/js/runtime-main.bc1643ea.js.map",
     "static/js/2.408e0a13.chunk.js": "/water_app/static/js/2.408e0a13.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.bc1643ea.js",
     "static/js/2.408e0a13.chunk.js",
     "static/css/main.8368edcf.chunk.css",
-    "static/js/main.e1199e0f.chunk.js"
+    "static/js/main.72be36e4.chunk.js"
   ]
 }
