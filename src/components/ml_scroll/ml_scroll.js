@@ -7,52 +7,63 @@ import './ml_scroll.css';
 class Mlscroll extends Component {
 
     state = {
-        arr: []
+        aarr: [],
+        arr: [...Array(560).fill(null).map((u, i) => i)],
+        active: false
     }
 
     componentDidMount() {
+        // this.generateSlider(this.state.arr);
+        // console.log(this.state.arr);
         this.generateSlides();
         const wrap = document.querySelector(".wrapper").children;
         let newArray = [];
         for (let elem of wrap) {
             newArray.push(elem);
             this.setState(() => ({
-                arr: newArray
+                aarr: newArray
             }));
         }
         
     }
 
     nextSlide = () => {
-        const {arr} = this.state;
-        for(let i = 0; i < arr.length; i++) {
-            if(arr[i].classList.contains("active")) {
-                arr[i].classList.remove("active");
-                arr[i-1].classList.add("active");
+        const {aarr} = this.state;
+        for(let i = 0; i < aarr.length; i++) {
+            if(aarr[i].classList.contains("active")) {
+                aarr[i].classList.remove("active");
+                aarr[i-1].classList.add("active");
             }
 
-            if(arr[i].classList.contains("first") && arr[i].classList.contains("active")) {
-                arr[i].classList.remove("active");
-                arr[(arr.length -1) - 1].classList.add("active");
+            if(aarr[i].classList.contains("first") && aarr[i].classList.contains("active")) {
+                aarr[i].classList.remove("active");
+                aarr[(aarr.length -1) - 1].classList.add("active");
             }
         }
     } 
 
     prevSlide = () => {
-        const {arr} = this.state;
-        for(let i = arr.length - 1; i > 0; i--) {
-            if(arr[i].classList.contains("active")) {
-                arr[i].classList.remove("active");
-                arr[i+1].classList.add("active");
+        const {aarr} = this.state;
+        for(let i = aarr.length - 1; i > 0; i--) {
+            if(aarr[i].classList.contains("active")) {
+                aarr[i].classList.remove("active");
+                aarr[i+1].classList.add("active");
             }
 
-            if(arr[i].classList.contains("last") && arr[i].classList.contains("active")) {
-                arr[i].classList.remove("active");
-                arr[0].classList.add("active");
+            if(aarr[i].classList.contains("last") && aarr[i].classList.contains("active")) {
+                aarr[i].classList.remove("active");
+                aarr[0].classList.add("active");
             }
         }
     }
  
+    generateSlider = (arr) => {
+        arr.map((item) => {
+            return (
+                <div key={item} class="slide">{item + 50}</div>
+            )
+        })
+    }
     generateSlides = () => {
         const wrapper = document.querySelector(".wrapper");
         for(let i = 40; i < 600; i = i + 10) {
@@ -87,12 +98,22 @@ class Mlscroll extends Component {
 
     render() {
 
+        const {array} = this.state;
+
         return (
             <div className="ml_scroll">
                 <div id="up" onClick={this.nextSlide}>
                     <div id="img1"></div>
                 </div>
-                <div className="wrapper" onClick={this.getDaily}></div>
+                <div className="wrapper" onClick={this.getDaily}>
+                    {/* {
+                        array.map((item) => {
+                            return (
+                                <div key={item}>{item + 50}</div>
+                            )
+                        })
+                    } */}
+                </div>
                 <div id="down" onClick={this.prevSlide}>
                     <div id="img2"></div>
                 </div>

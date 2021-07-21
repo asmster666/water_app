@@ -11,26 +11,6 @@ class Typescroll extends Component {
         counter: 1 
     }
 
-    componentDidMount() {
-        this.buildSlider();
-    }
-
-    componentDidUpdate() {
-
-    }
-
-    buildSlider = () => { 
-        const slider = document.querySelector(".slider");
-        for(let i = 0; i < this.state.array.length; i++) {
-            let child = document.createElement("div");
-            let text = document.createTextNode(`${this.state.array[i]}`);
-            child.append(text);
-            child.classList.add("slides");
-            child.addEventListener('click', () => this.addActive(child));
-            slider.appendChild(child);
-        }
-    }
-
     addActive = (item) => {
         item.classList.add("slides_clicked", "active_type");
     }
@@ -59,10 +39,20 @@ class Typescroll extends Component {
 
     render() {
 
+        const {array} = this.state;
+
         return (
             <div className="type_scroll">
                 <div className="slides_cover">
-                    <div className="slider" onClick={this.getCurType}></div>
+                    <div className="slider" onClick={this.getCurType}>
+                        {
+                            array.map((item) => {
+                                return (
+                                    <div className="slides" key={item}>{item}</div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>  
         )
