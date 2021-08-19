@@ -4,7 +4,7 @@ import { instanceOf } from 'prop-types';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
-import './main_field.css';
+import './main.css';
 
 class Main extends Component {
     // checking the type of data as element of class with warning

@@ -24,8 +24,8 @@ export default class Statistics extends Component {
             <div className="stat">
                 <Chart
                     className="chart"
-                    width={'500px'}
-                    heignt={'300px'}
+                    width={'450px'}
+                    heignt={'500px'}
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[

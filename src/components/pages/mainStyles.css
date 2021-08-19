@@ -1,0 +1,11 @@
+.appl {
+    display: flex;
+    width: 70%;
+    margin: 2rem auto;
+    border: 5px solid blue;
+    border-radius: 5px;
+}
+.main_wrap {
+    display: flex;
+    flex-flow: row wrap;
+}

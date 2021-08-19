@@ -105,7 +105,7 @@
     font-size: 3rem;
 }
 #glass {
-    background-image: url('../../img/water.jpg');
+    /* background-image: url('../../img/water.jpg'); */
     background-size: cover;
     background-position: center;
 }
@@ -181,15 +181,7 @@
     display: none;
 }
 
-/* main page */
-.appl {
-    display: flex;
-    width: 70%;
-    margin: 2rem auto;
-    flex-flow: row wrap;
-    border: 5px solid blue;
-    border-radius: 5px;
-}
+
 
 /*-----------responsive-----------*/
 
@@ -197,9 +189,6 @@
 @media screen and (max-width: 599px) {
     .form1, .form2 {
         width: 80%;
-    }
-    .appl {
-        width: 90%;
     }
 }
 
