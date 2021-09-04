@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Main from '../main_field';
-import Mlscroll from '../ml_scroll/ml_scrol';
+import Mlscrol from '../ml_scroll/ml_scrol';
 import Typescroll from '../type_scroll/type_scrol';
 import Statistics from '../statistic';
 import { withRouter } from "react-router-dom";
@@ -14,7 +14,7 @@ class MainPage extends Component {
             <div className="appl">
                 <Statistics/>
                 <div className="main_wrap">
-                    <Mlscroll/>
+                    <Mlscrol/>
                     <Typescroll/>
                     <Main />
                 </div>
