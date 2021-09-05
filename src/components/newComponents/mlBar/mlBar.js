@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './ml_scrol.css';
+import './mlBar.sass';
 
-const Mlscroll = () => {
+const MlBar = () => {
     return (
         <div className="ml_scroll">
             mlscroll
@@ -9,4 +9,4 @@ const Mlscroll = () => {
     )
 }
 
-export default Mlscroll;
+export default MlBar;

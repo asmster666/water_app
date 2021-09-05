@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
-import './type_scrol.css';
+import './typeSlider.sass';
 
-const Typescroll = () => {
+const TypeSlider = () => {
 
     const images = [
         { url: '../../img/water.jpg' },
@@ -23,4 +23,4 @@ const Typescroll = () => {
     )
 }
 
-export default Typescroll;
+export default TypeSlider;
